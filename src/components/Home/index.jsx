@@ -8,7 +8,7 @@ const index = () => {
           {/* Text content section */}
           <div className="order-2 sm:order-1">
             <h1 className=" text-5xl sm:text-6xl lg:text-5xl font-bold">
-              不是什麼了不起的
+              不是什麼了不起的??
               <span className="text-primary font-cursive">咖啡館</span>， 但提供
               <span className="text-primary font-cursive">
                 好喝的咖啡，好吃的甜點
