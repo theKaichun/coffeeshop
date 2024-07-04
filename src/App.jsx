@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home";
 import Services from "./components/Services/Services";
 import Banner from "./components/Banner/Banner";
+import Testimonial from "./components/Testimonial/Testimonial";
 import Footer from "./components/Footer/Footer";
 
 export const App = () => {
@@ -23,6 +24,7 @@ export const App = () => {
       <Home />
       <Services />
       <Banner />
+      <Testimonial />
       <Footer />
     </div>
   );
