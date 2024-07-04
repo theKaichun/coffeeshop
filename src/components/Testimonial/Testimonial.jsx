@@ -8,12 +8,19 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(
-          `https://maps.googleapis.com/maps/api/place/details/json?place_id=g/11pvb938mf&fields=reviews&key=YOUR_API_KEY`
-        );
-        setReviews(response.data.result.reviews);
+        const response = await axios.get("http://localhost:3001/api/reviews");
+        setReviews(response.data);
       } catch (error) {
-        console.error("Error fetching reviews:", error);
+        if (error.response) {
+          // 请求已发送，服务器返回状态码不在 2xx 范围内
+          console.error("Error response:", error.response.data);
+        } else if (error.request) {
+          // 请求已发送但没有收到响应
+          console.error("No response received:", error.request);
+        } else {
+          // 其他错误
+          console.error("Error fetching reviews:", error.message);
+        }
       }
     };
 

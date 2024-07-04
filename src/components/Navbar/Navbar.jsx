@@ -15,7 +15,7 @@ const Menus = [
   {
     id: 3,
     name: "About",
-    link: "/#about",
+    link: "/about",
   },
 ];
 const Navbar = () => {
