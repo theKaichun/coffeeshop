@@ -1,34 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-
-const TestimonialData = [
-  {
-    id: 1,
-    name: "Dilshad",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/101/101",
-  },
-  {
-    id: 2,
-    name: "Sabir ali",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/102/102",
-  },
-  {
-    id: 3,
-    name: "Dipankar kumar",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/104/104",
-  },
-  {
-    id: 5,
-    name: "Satya Narayan",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
-    img: "https://picsum.photos/103/103",
-  },
-];
+import axios from "axios";
 
 const Testimonials = () => {
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(
+          `https://maps.googleapis.com/maps/api/place/details/json?place_id=g/11pvb938mf&fields=reviews&key=YOUR_API_KEY`
+        );
+        setReviews(response.data.result.reviews);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
   var settings = {
     dots: true,
     arrows: false,
@@ -70,7 +61,6 @@ const Testimonials = () => {
   return (
     <div className="py-10 mb-10">
       <div className="container">
-        {/* header section */}
         <div className="mb-10">
           <h1
             data-aos="fade-up"
@@ -80,28 +70,26 @@ const Testimonials = () => {
           </h1>
         </div>
 
-        {/* Testimonial cards */}
         <div data-aos="zoom-in">
           <Slider {...settings}>
-            {TestimonialData.map((data) => (
-              <div className="my-6">
-                <div
-                  key={data.id}
-                  className="flex flex-col gap-4 shadow-lg py-8 px-6 mx-4 rounded-xl  bg-primary/10 relative"
-                >
+            {reviews.map((review, index) => (
+              <div className="my-6" key={index}>
+                <div className="flex flex-col gap-4 shadow-lg py-8 px-6 mx-4 rounded-xl bg-primary/10 relative">
                   <div className="mb-4">
                     <img
-                      src={data.img}
-                      alt=""
+                      src={
+                        review.profile_photo_url ||
+                        "https://via.placeholder.com/150"
+                      }
+                      alt={review.author_name}
                       className="rounded-full w-20 h-20"
                     />
                   </div>
-                  {/* content section */}
                   <div className="flex flex-col items-center gap-4">
                     <div className="space-y-3">
-                      <p className="text-xs text-gray-500">{data.text}</p>
-                      <h1 className="text-xl font-bold text-black/80  font-cursive2">
-                        {data.name}
+                      <p className="text-xs text-gray-500">{review.text}</p>
+                      <h1 className="text-xl font-bold text-black/80 font-cursive2">
+                        {review.author_name}
                       </h1>
                     </div>
                   </div>
