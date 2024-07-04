@@ -1,16 +1,23 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+// import dotenv from "dotenv";
+
+// dotenv.config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 
 app.get("/api/reviews", async (req, res) => {
   try {
-    const placeId = "ChIJOwg_06VPwokRYv534QaPC8g";
+    const placeId = "ChIJDaWk9KirQjQRsoIv7XzFqEc";
     const apiKey = "AIzaSyDCrUfSfLJCfkGEwpq3o4dSHz9F8ew5I5M";
+
+    if (!placeId || !apiKey) {
+      throw new Error("Missing environment variables");
+    }
 
     const response = await axios.get(
       "https://maps.googleapis.com/maps/api/place/details/json",
@@ -23,10 +30,14 @@ app.get("/api/reviews", async (req, res) => {
       }
     );
 
+    if (!response.data.result || !response.data.result.reviews) {
+      throw new Error("No reviews found");
+    }
+
     res.json(response.data.result.reviews);
   } catch (error) {
     console.error("Error fetching reviews:", error.message);
-    res.status(500).send("Error fetching reviews");
+    res.status(500).json({ error: "Error fetching reviews" });
   }
 });
 

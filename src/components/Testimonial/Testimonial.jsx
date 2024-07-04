@@ -4,30 +4,26 @@ import axios from "axios";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
+        setLoading(true);
         const response = await axios.get("http://localhost:3001/api/reviews");
         setReviews(response.data);
+        setLoading(false);
       } catch (error) {
-        if (error.response) {
-          // 请求已发送，服务器返回状态码不在 2xx 范围内
-          console.error("Error response:", error.response.data);
-        } else if (error.request) {
-          // 请求已发送但没有收到响应
-          console.error("No response received:", error.request);
-        } else {
-          // 其他错误
-          console.error("Error fetching reviews:", error.message);
-        }
+        setError("Error fetching reviews. Please try again later.");
+        setLoading(false);
+        console.error("Error fetching reviews:", error);
       }
     };
-
     fetchReviews();
   }, []);
 
-  var settings = {
+  const settings = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -65,6 +61,9 @@ const Testimonials = () => {
     ],
   };
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <div className="py-10 mb-10">
       <div className="container">
@@ -76,7 +75,6 @@ const Testimonials = () => {
             Testimonials
           </h1>
         </div>
-
         <div data-aos="zoom-in">
           <Slider {...settings}>
             {reviews.map((review, index) => (
@@ -90,6 +88,10 @@ const Testimonials = () => {
                       }
                       alt={review.author_name}
                       className="rounded-full w-20 h-20"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://via.placeholder.com/150";
+                      }}
                     />
                   </div>
                   <div className="flex flex-col items-center gap-4">
@@ -98,6 +100,21 @@ const Testimonials = () => {
                       <h1 className="text-xl font-bold text-black/80 font-cursive2">
                         {review.author_name}
                       </h1>
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <span
+                            key={i}
+                            className={
+                              i < review.rating
+                                ? "text-yellow-500"
+                                : "text-gray-300"
+                            }
+                          >
+                            ★
+                          </span>
+                        ))}
+                        <span className="ml-2">{review.rating}/5</span>
+                      </div>
                     </div>
                   </div>
                   <p className="text-black/20 text-9xl font-serif absolute top-0 right-0">
