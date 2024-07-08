@@ -13,7 +13,7 @@ const Testimonials = () => {
         setLoading(true);
         const response = await axios.get(
           // "http://localhost:3001/api/reviews"
-          "https://coffeeshop-silk.vercel.app//api/reviews"
+          "https://coffeeshop-silk.vercel.app/api/reviews"
         );
         setReviews(response.data);
         setLoading(false);
