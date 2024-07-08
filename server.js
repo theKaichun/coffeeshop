@@ -29,6 +29,7 @@ app.get("/api/reviews", async (req, res) => {
         },
       }
     );
+    console.log(JSON.stringify(response.data, null, 2));
 
     if (!response.data.result || !response.data.result.reviews) {
       throw new Error("No reviews found");
