@@ -11,7 +11,9 @@ const Testimonials = () => {
     const fetchReviews = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3001/api/reviews");
+        const response = await axios.get(
+          "https://coffeeshop-silk.vercel.app/api/reviews"
+        );
         setReviews(response.data);
         setLoading(false);
       } catch (error) {
