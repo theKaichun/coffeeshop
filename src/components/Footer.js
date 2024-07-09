@@ -107,8 +107,9 @@ const Footer = () => {
                 <a
                   href="https://line.me/R/ti/p/nobodyaboutcafe"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <FaLine className=" text-3xl inline-block hover:scale-105 duration-200" />
+                  <FaLine className="text-3xl inline-block hover:scale-105 duration-200" />
                 </a>
               </div>
             </div>
