@@ -8,9 +8,10 @@ export default {
         cursive: ["Indie Flower", "cursive"],
       },
       colors: {
-        primary: "#0080FF",
-        secondary: "#ADD8E6",
-        brandDark: "#f5f5dc",
+        primary: "#FEFAE5",
+        secondary: "#DEBAA1",
+        brandDark: "#A56546",
+        button: "#BBA78C",
       },
       container: {
         center: true,

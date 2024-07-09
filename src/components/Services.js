@@ -34,7 +34,7 @@ const Services = () => {
   return (
     <>
       <span id="services"></span>
-      <div className="py-10">
+      <div className="py-10 bg-primary">
         <div className="container mx-auto">
           {/* header title */}
           <div className="text-center mb-20">
@@ -63,7 +63,7 @@ const Services = () => {
                 {/* Text content */}
                 <div className="p-4 h-[180px] overflow-y-auto">
                   <h1 className="text-xl font-bold mb-2">{data.name}</h1>
-                  <p className="text-gray-500 group-hover:text-white duration-300 text-sm">
+                  <p className="from-primary group-hover:text-white duration-300 text-sm">
                     {data.description}
                   </p>
                 </div>

@@ -10,7 +10,7 @@ import { MdOutlineSevereCold } from "react-icons/md";
 
 const bgImage = {
   backgroundImage: `url(${bg.src})`,
-  backgroundColor: "#270c03",
+  backgroundColor: "#FEFAE5",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "contain",

@@ -48,7 +48,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <button className="bg-primary px-4 py-2 rounded-full hover:scale-105 duration-200 flex items-center gap-3">
+            <button className="bg-button px-4 py-2 rounded-full hover:scale-105 duration-200 flex items-center gap-3">
               Order
               <FaCoffee className="text-xl cursor-pointer" />
             </button>

@@ -104,7 +104,10 @@ const Footer = () => {
                 >
                   <FaInstagram className=" text-3xl inline-block hover:scale-105 duration-200" />
                 </a>
-                <a href="" target="_blank">
+                <a
+                  href="https://line.me/R/ti/p/nobodyaboutcafe"
+                  target="_blank"
+                >
                   <FaLine className=" text-3xl inline-block hover:scale-105 duration-200" />
                 </a>
               </div>
