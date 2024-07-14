@@ -24,9 +24,6 @@ function Banner() {
               <h1 className="text-3xl sm:text-4xl font-bold font-cursive">
                 Premium Single Origin Coffee
               </h1>
-              <p className="text-sm text-gray-500 tracking-wide leading-5 ">
-                咖啡中的小人物 而且口感淡薄~~
-              </p>
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-5">
@@ -45,12 +42,14 @@ function Banner() {
                 </div>
 
                 <div className="border-l-4 border-primary/50 pl-6 space-y-3">
-                  <h1 className="text-2xl font-semibold font-cursive">
+                  <h1 className="text-2xl font-semibold font-sans text-black">
                     營業時間
                   </h1>
-                  <p className=" text-gray-500 text-sm">
-                    一~五 11：00~19：00 六：13:00~17:00 日：在家陪貓
-                  </p>
+                  <div className="text-gray-500 text-sm space-y-1">
+                    <p>一～五：11:00~19:00</p>
+                    <p>六：13:00~17:00</p>
+                    <p>日：在家陪貓</p>
+                  </div>
                 </div>
               </div>
             </div>

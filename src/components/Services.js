@@ -4,13 +4,15 @@ import Img2 from "@/assets/website/Tiramisu.jpg";
 import Img3 from "@/assets/website/cinnamon.jpg";
 import Img4 from "@/assets/website/eggroast.jpg";
 
+const newLocal_1 =
+  "小人物提拉米蘇裡面加了「君度」與「猴子47」，濕潤的手指餅乾，細緻的乳香口感與香氣的交響樂好吃到會笑出來。";
+const newLocal = newLocal_1;
 const ServicesData = [
   {
     id: 1,
     img: Img2,
     name: "Tiramisu",
-    description:
-      "小人物提拉米蘇裡面加了 君度 跟 猴子47 濕潤的手指餅乾 細緻的乳香口感與香氣的交響樂好吃到會笑出來",
+    description: newLocal,
     aosDelay: "100",
   },
   {
@@ -38,7 +40,7 @@ const Services = () => {
         <div className="container mx-auto">
           {/* header title */}
           <div className="text-center mb-20">
-            <h1 className="text-4xl font-bold font-cursive text-gray-800">
+            <h1 className="text-4xl font-bold font-cursive text-gray-00">
               Best Dessert For You
             </h1>
           </div>
@@ -50,7 +52,7 @@ const Services = () => {
                 data-aos="fade-up"
                 data-aos-delay={data.aosDelay}
                 key={index}
-                className="rounded-2xl bg-gray hover:bg-secondary hover:text-white shadow-xl duration-200 w-full max-w-[300px] group relative"
+                className="rounded-2xl bg-primary hover:bg-secondary hover:text-white shadow-xl duration-200 w-full max-w-[300px] group relative"
               >
                 {/* img section */}
                 <div className="h-[200px] flex items-center justify-center overflow-hidden">
