@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Logo from "@/assets/website/coffee_togo.png";
 import { FaCoffee } from "react-icons/fa";
+
 const Menus = [
   {
     id: 1,
@@ -10,15 +11,16 @@ const Menus = [
   },
   {
     id: 2,
-    name: "Services",
-    link: "/#services",
+    name: "Menu",
+    link: "/server",
   },
   {
     id: 3,
     name: "About",
-    link: "/about",
+    link: "/leaf",
   },
 ];
+
 const Navbar = () => {
   return (
     <div className="bg-gradient-to-r from-secondary to-secondary/90 text-white">
