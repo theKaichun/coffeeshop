@@ -1,27 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import bg from "@/assets/website/NBaC.jpg";
-
 import BannerImg from "@/assets/website/overcoffee.jpg";
-
 import { GiCoffeeBeans } from "react-icons/gi";
 import { GiCoffeeCup } from "react-icons/gi";
 import { MdOutlineSevereCold } from "react-icons/md";
 
-const bgImage = {
-  backgroundImage: `url(${bg.src})`,
-  backgroundColor: "#FEFAE5",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "contain",
-  height: "100%",
-  width: "100%",
-};
-
 function Banner() {
   return (
     <>
-      <div style={bgImage}>
+      <div className="bg-secondary">
         <div className="container min-h-[550px] flex justify-center items-center py-12 sm:py-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Image Section */}
@@ -38,8 +25,7 @@ function Banner() {
                 Premium Single Origin Coffee
               </h1>
               <p className="text-sm text-gray-500 tracking-wide leading-5 ">
-                咖啡中的小人物 而且口感淡薄~~ 一~五 11：00~19：00
-                六：13:00~17:00 日：在家陪貓
+                咖啡中的小人物 而且口感淡薄~~
               </p>
 
               <div className="grid grid-cols-2 gap-6">
@@ -60,10 +46,10 @@ function Banner() {
 
                 <div className="border-l-4 border-primary/50 pl-6 space-y-3">
                   <h1 className="text-2xl font-semibold font-cursive">
-                    Address
+                    營業時間
                   </h1>
                   <p className=" text-gray-500 text-sm">
-                    地址：106台北市大安區復興南路二段368號
+                    一~五 11：00~19：00 六：13:00~17:00 日：在家陪貓
                   </p>
                 </div>
               </div>
