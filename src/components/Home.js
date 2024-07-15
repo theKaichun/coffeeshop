@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Help from "@/assets/website/coffee.jpg";
-import bg from "@/assets/website/NBaC.jpg";
+import bg from "@/assets/website/NBaC.png";
 
 const Index = () => {
   return (
@@ -14,7 +14,7 @@ const Index = () => {
               <Image
                 src={bg}
                 alt=""
-                className="w-[200px] sm:w-[550px] sm:scale-110 mx-auto spin"
+                className="w-[200px] sm:w-[550px] sm:scale-110 mx-auto spin "
               />
             </div>
             <div className="flex justify-center items-center w-full">
