@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="bg-secondary min-h-[200px] flex items-center justify-center px-4">
         <div className="container grid md:grid-cols-3 gap-4 p-5 text-center md:text-left">
           {/* Company details */}
-          <div className="py-8 px-4 ">
+          <div className="py-8 px-4 items-center">
             <a
               href="#"
               className="font-semibold tracking-widest text-2xl sm:text-3xl font-cursive"
@@ -18,7 +18,7 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/nobody_about_cafe/"
               target="_blank"
-              className="inline-block bg-primary py-2 px-4 mt-5 text-sm rounded-full"
+              className="bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3"
             >
               Our Instagram
             </a>

@@ -18,7 +18,7 @@ const Index = () => {
               />
             </div>
             <div className="flex justify-center items-center w-full">
-              <button className="bg-gradient-to-r to-secondary/100 from-secondary border-2 border-primary rounded-full px-4 py-2 mt-4 text-white hover:scale-105 duration-200">
+              <button className=" bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3">
                 不是什麼了不起的咖啡館，但提供好喝的咖啡好吃的甜點
               </button>
             </div>

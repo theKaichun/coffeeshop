@@ -48,28 +48,30 @@ const Services = () => {
           {/* Services Card Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
             {ServicesData.map((data, index) => (
-              <div
-                data-aos="fade-up"
-                data-aos-delay={data.aosDelay}
-                key={index}
-                className="rounded-2xl bg-primary hover:bg-secondary hover:text-white shadow-xl duration-200 w-full max-w-[300px] group relative"
-              >
-                {/* img section */}
-                <div className="h-[200px] flex items-center justify-center overflow-hidden">
-                  <Image
-                    src={data.img}
-                    alt={data.name}
-                    className="w-full h-full object-cover rounded-full group-hover:scale-110 group-hover:rotate-6 duration-300"
-                  />
+              <a href="https://myship.7-11.com.tw/general/detail/GM2405226689692">
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay={data.aosDelay}
+                  key={index}
+                  className="rounded-2xl bg-primary hover:bg-secondary hover:text-white shadow-xl duration-200 w-full max-w-[300px] group relative"
+                >
+                  {/* img section */}
+                  <div className="h-[200px] flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={data.img}
+                      alt={data.name}
+                      className="w-full h-full object-cover rounded-full group-hover:scale-110 group-hover:rotate-6 duration-300"
+                    />
+                  </div>
+                  {/* Text content */}
+                  <div className="p-4 h-[180px] overflow-y-auto">
+                    <h1 className="text-xl font-bold mb-2">{data.name}</h1>
+                    <p className="from-primary group-hover:text-white duration-300 text-sm">
+                      {data.description}
+                    </p>
+                  </div>
                 </div>
-                {/* Text content */}
-                <div className="p-4 h-[180px] overflow-y-auto">
-                  <h1 className="text-xl font-bold mb-2">{data.name}</h1>
-                  <p className="from-primary group-hover:text-white duration-300 text-sm">
-                    {data.description}
-                  </p>
-                </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
