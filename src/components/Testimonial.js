@@ -68,7 +68,7 @@ const Testimonials = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="py-10 mb-10">
+    <div className="py-10  bg-primary">
       <div className="container">
         <div className="mb-10">
           <h1
