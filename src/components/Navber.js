@@ -64,7 +64,7 @@ const Navbar = () => {
             <button className="sm:hidden text-2xl" onClick={handleMenuToggle}>
               {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
-            <button className="bg-secondary px-4 py-2 rounded-full hover:bg-secondary/5 hover:scale-105 duration-200 flex items-center gap-3">
+            <button className="bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3">
               Order
               <FaCoffee className="text-xl cursor-pointer" />
             </button>

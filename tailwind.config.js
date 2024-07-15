@@ -11,7 +11,8 @@ export default {
         primary: "#FEFAE5",
         secondary: "#DEBAA1",
         brandDark: "#A56546",
-        button: "#BBA78C",
+        button: "#D09468",
+        buttonHover: "#E39E6B",
       },
       container: {
         center: true,
@@ -19,6 +20,9 @@ export default {
           DEFAULT: "1rem",
           sm: "2rem",
         },
+      },
+      boxShadow: {
+        custom: "0 8px 10px -6px rgba(73, 44, 0, 0.10)",
       },
     },
   },

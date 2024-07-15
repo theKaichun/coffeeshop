@@ -82,7 +82,7 @@ const Testimonials = () => {
           <Slider {...settings}>
             {reviews.map((review, index) => (
               <div className="my-6" key={index}>
-                <div className="flex flex-col gap-4 shadow-md shadow-amber-700 py-8 px-6 mx-4 rounded-xl bg-primary/10 relative">
+                <div className="flex flex-col gap-4  shadow-custom py-8 px-6 mx-4 rounded-xl bg-primary/10 rgb relative">
                   <div className="mb-4">
                     <img
                       src={
