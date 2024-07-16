@@ -48,7 +48,10 @@ const Services = () => {
           {/* Services Card Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center">
             {ServicesData.map((data, index) => (
-              <a href="https://myship.7-11.com.tw/general/detail/GM2405226689692">
+              <a
+                href="https://myship.7-11.com.tw/general/detail/GM2405226689692"
+                key={index}
+              >
                 <div
                   data-aos="fade-up"
                   data-aos-delay={data.aosDelay}
