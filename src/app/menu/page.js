@@ -69,11 +69,11 @@ const Menu = () => {
       <Image
         src={Logo}
         alt="Logo"
-        className="w-[200px] sm:w-[200px] sm:scale-100 mx-auto mr-0 py-5  duration-300  -skew-y-12 "
+        className="w-[100px] sm:w-[200px] sm:scale-100 mx-auto mr-0 py-5   -skew-y-12 "
       />
       {menuItems.map((category, index) => (
         <div key={index}>
-          <h2 className="text-2xl font-semibold flex items-center justify-center underline font-cursive">
+          <h2 className="text-1xl font-semibold flex items-center justify-center underline font-cursive">
             {category.category}
             {category.note && (
               <span className="text-sm text-gray-500 mr-2 ">
@@ -85,7 +85,7 @@ const Menu = () => {
             {category.items.map((item, itemIndex) => (
               <li
                 key={itemIndex}
-                className="flex justify-between py-1 text-blue-700 font-cursive font-extrabold text-3xl "
+                className="flex justify-between py-1 text-blue-700 font-cursive font-bold text-3xl "
               >
                 <span>{item.name}</span>
                 <span>{item.price}</span>
