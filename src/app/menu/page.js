@@ -1,8 +1,10 @@
 import React from "react";
-
+import Logo from "@/assets/website/NBaC.png";
+import Image from "next/image";
 const menuItems = [
   {
     category: "髒咖啡 Dirty Coffee - 快速、好喝、不用等",
+    note: "(Expresso & Flat wnite)(棉花糖烤餅乾)(內用限定)",
     items: [
       { name: "髒(黑)咖啡 Dirty Coffee", price: "65$" },
       { name: "髒拿鐵 Dirty Au lait", price: "80$" },
@@ -18,7 +20,6 @@ const menuItems = [
       {
         name: "現淬壹加壹 1+1",
         price: "120$",
-        note: "Expresso & Flat white (內用限定)",
       },
     ],
   },
@@ -31,7 +32,6 @@ const menuItems = [
       {
         name: "單品壹加壹 Single Origin 1+1",
         price: "140$",
-        note: "Expresso & Flat white (內用限定)",
       },
     ],
   },
@@ -55,9 +55,9 @@ const menuItems = [
   {
     category: "小東西 Snack",
     items: [
-      { name: "棉花糖烤餅乾", price: "60$", note: "(內用限定)" },
+      { name: "棉花糖烤餅乾", price: "60$" },
       { name: "起司雞蛋燒", price: "100~120$" },
-      { name: "肉桂捲", price: "普通、楓糖奶油、海鹽起司" },
+      { name: "肉桂捲", price: "原味、楓糖奶油、海鹽起司" },
       { name: "每日甜點", note: "→ 見燈箱" },
     ],
   },
@@ -65,18 +65,34 @@ const menuItems = [
 
 const Menu = () => {
   return (
-    <div className="menu">
-      <h1 className="text-3xl font-bold mb-4">Menu</h1>
+    <div className="menu bg-white px-10 ">
+      <Image
+        src={Logo}
+        alt="Logo"
+        className="w-[200px] sm:w-[200px] sm:scale-100 mx-auto mr-0 py-5  duration-300  -skew-y-12 "
+      />
       {menuItems.map((category, index) => (
-        <div key={index} className="mb-6">
-          <h2 className="text-2xl font-semibold">{category.category}</h2>
+        <div key={index}>
+          <h2 className="text-2xl font-semibold flex items-center justify-center underline font-cursive">
+            {category.category}
+            {category.note && (
+              <span className="text-sm text-gray-500 mr-2 ">
+                {category.note}
+              </span>
+            )}
+          </h2>
           <ul className="mt-2">
             {category.items.map((item, itemIndex) => (
-              <li key={itemIndex} className="flex justify-between py-1">
+              <li
+                key={itemIndex}
+                className="flex justify-between py-1 text-blue-700 font-cursive font-extrabold text-3xl "
+              >
                 <span>{item.name}</span>
                 <span>{item.price}</span>
                 {item.note && (
-                  <span className="text-sm text-gray-500">{item.note}</span>
+                  <span className="text-sm text-gray-500 block mt-1">
+                    {item.note}
+                  </span>
                 )}
               </li>
             ))}
