@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "@/assets/website/coffee_togo.png";
 import { FaCoffee, FaBars, FaTimes } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const Menus = [
   {
@@ -12,7 +13,7 @@ const Menus = [
   {
     id: 2,
     name: "Menu",
-    link: "/server",
+    link: "/menu",
   },
   {
     id: 3,
@@ -23,6 +24,7 @@ const Menus = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -52,9 +54,11 @@ const Navbar = () => {
               {Menus.map((data, index) => (
                 <li key={index}>
                   <a
-                    href={data.link}
                     className="inline-block text-xl py-4 px-4 text-white/70 hover:text-white duration-200"
-                    onClick={handleMenuToggle}
+                    onClick={() => {
+                      handleMenuToggle();
+                      router.push("/menu");
+                    }}
                   >
                     {data.name}
                   </a>
@@ -64,7 +68,7 @@ const Navbar = () => {
             <button className="sm:hidden text-2xl" onClick={handleMenuToggle}>
               {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
-            <button className="bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3">
+            <button className=" px-4 py-2 rounded-full bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3">
               Order
               <FaCoffee className="text-xl cursor-pointer" />
             </button>
