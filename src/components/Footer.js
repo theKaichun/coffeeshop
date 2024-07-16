@@ -18,7 +18,7 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/nobody_about_cafe/"
               target="_blank"
-              className="bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200 flex items-center gap-3"
+              className="inline-block bg-button px-4 py-2 rounded-full hover:bg-buttonHover  hover:scale-105 duration-200  items-center gap-3"
             >
               Our Instagram
             </a>
