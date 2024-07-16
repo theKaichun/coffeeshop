@@ -56,7 +56,7 @@ const Services = () => {
                   data-aos="fade-up"
                   data-aos-delay={data.aosDelay}
                   key={index}
-                  className="rounded-2xl bg-primary hover:bg-secondary hover:text-white shadow-xl duration-200 w-full max-w-[300px] group relative"
+                  className="rounded-2xl bg-yellow-100/10 hover:bg-secondary hover:text-white shadow-custom duration-200 w-full max-w-[280px] group relative"
                 >
                   {/* img section */}
                   <div className="h-[200px] flex items-center justify-center overflow-hidden">
