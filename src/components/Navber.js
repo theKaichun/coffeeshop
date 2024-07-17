@@ -4,7 +4,7 @@ import Logo from "@/assets/website/coffee_togo.png";
 import { FaCoffee, FaBars, FaTimes } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-const Menus = [
+const menus = [
   {
     id: 1,
     name: "Home",
@@ -51,13 +51,13 @@ const Navbar = () => {
                 isMobileMenuOpen ? "block" : "hidden"
               } sm:flex flex-col sm:flex-row items-center gap-4 absolute sm:static top-16 left-0 w-full sm:w-auto bg-gradient-to-r from-secondary to-secondary/90 sm:bg-none p-4 sm:p-0 z-50`}
             >
-              {Menus.map((data, index) => (
+              {menus.map((data, index) => (
                 <li key={index}>
                   <a
-                    className="inline-block text-xl py-4 px-4 text-white/70 hover:text-white duration-200"
+                    className="inline-block text-xl py-4 px-4 text-white/70 hover:text-white duration-200 cursor-pointer"
                     onClick={() => {
                       handleMenuToggle();
-                      router.push("/menu");
+                      router.push(data.link);
                     }}
                   >
                     {data.name}

@@ -118,7 +118,7 @@ const coffeemens = [
         roast: "焙度:Light",
         processing: "處理法:Anaerobic",
         production: "產區:Guji",
-        varieties: "品種:74110、74112、74158",
+        varieties: "品種:74110.74112.74158",
         flavor: "百香果、土鳳梨、芒果乾、杏桃、木槿花、可可碎、波特酒香",
       },
       {
@@ -160,7 +160,7 @@ const MenuList = ({ items }) => {
                     {item.note}
                   </span>
                 )}
-                <div className=" text-black text-sm font-cursive text-nowrap ">
+                <div className=" text-black text-sm font-cursive text-nowrap flex-col sm:flex-row ">
                   {item.roast && <span className="mr-3">{item.roast}</span>}
 
                   {item.processing && (
@@ -173,7 +173,7 @@ const MenuList = ({ items }) => {
                     <span className="mr-2">{item.varieties}</span>
                   )}
                 </div>
-                <div className=" text-black text-sm font-cursive ">
+                <div className=" text-black text-sm font-cursive flex-col sm:flex-row ">
                   {item.flavor && <span className="mr-2">{item.flavor}</span>}
                 </div>
               </li>
