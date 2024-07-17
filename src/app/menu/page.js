@@ -160,7 +160,7 @@ const MenuList = ({ items }) => {
                     {item.note}
                   </span>
                 )}
-                <div className="flex text-black text-sm font-cursive ">
+                <div className="flex text-black text-sm font-cursive text-nowrap ">
                   {item.roast && <span className="mr-10">{item.roast}</span>}
 
                   {item.processing && (
