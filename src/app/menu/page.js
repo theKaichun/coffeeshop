@@ -160,21 +160,21 @@ const MenuList = ({ items }) => {
                     {item.note}
                   </span>
                 )}
-                <div className="flex text-black text-sm font-cursive text-nowrap ">
+                <div className=" text-black text-sm font-cursive text-nowrap ">
                   {item.roast && <span className="mr-3">{item.roast}</span>}
 
                   {item.processing && (
-                    <span className="mr-3">{item.processing}</span>
+                    <span className="mr-2">{item.processing}</span>
                   )}
                   {item.production && (
-                    <span className="mr-3">{item.production}</span>
+                    <span className="mr-2">{item.production}</span>
                   )}
                   {item.varieties && (
-                    <span className="mr-3">{item.varieties}</span>
+                    <span className="mr-2">{item.varieties}</span>
                   )}
                 </div>
-                <div className="flex text-black text-sm font-cursive ">
-                  {item.flavor && <span className="mr-3">{item.flavor}</span>}
+                <div className=" text-black text-sm font-cursive ">
+                  {item.flavor && <span className="mr-2">{item.flavor}</span>}
                 </div>
               </li>
             ))}
