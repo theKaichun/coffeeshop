@@ -58,7 +58,81 @@ const menuItems = [
   },
 ];
 
-const Menu = () => {
+const coffeemens = [
+  {
+    category: "單杯" + "咖啡豆",
+    items: [
+      {
+        name: "小人物配方豆",
+        price: "80$",
+        roast: "焙度:Medium",
+        flavor: "焦糖苦甜感、可可、麥芽、微微炭火香",
+      },
+      {
+        name: "衣索比亞-夏奇索G1",
+        price: "100$",
+        roast: "焙度:Light",
+        processing: "處理法:Washed",
+        production: "產區:Yirgacheffe",
+        varieties: "品種:Heirloom",
+        flavor: "茉莉花香、百香果、鳳梨、楊桃酸、甘蔗甜感",
+      },
+      {
+        name: "衣索比亞-巫莎莎",
+        price: "120$",
+        roast: "焙度:Light",
+        processing: "處理法:Natural",
+        production: "產區:Guji",
+        varieties: "品種:74112",
+        flavor: "藍莓、黑醋栗、葡萄、桃子、黑糖甜感",
+      },
+      {
+        name: "瓜地馬拉-小王子",
+        price: "100$",
+        roast: "焙度:Dark",
+        processing: "處理法:Natural",
+        production: "產區:Fraijanes",
+        varieties: "品種:Yellow Catuai",
+        flavor: "綜合莓果、榛果、微發酵酒感、尾韻綿長、蜂蜜糖感",
+      },
+      {
+        name: "瓜地馬拉-聖芭芭拉莊園",
+        price: "180$",
+        roast: "焙度:Light",
+        processing: "處理法:Washed",
+        production: "產區:Fraijanes",
+        varieties: "品種:Geisha",
+        flavor: "小白花、柑橘、桃子、焦糖、蜂蜜甜感",
+      },
+      {
+        name: "豔夏花荔-天堂莊園",
+        price: "150$",
+        roast: "焙度:Light",
+        processing: "處理法:Anaerobic",
+        production: "產區:Colombia Cauca",
+        flavor: "玫瑰花、水蜜桃、冰糖",
+      },
+      {
+        name: "艷諜-花蝶處理廠",
+        price: "150$",
+        roast: "焙度:Light",
+        processing: "處理法:Anaerobic",
+        production: "產區:Guji",
+        varieties: "品種:74110、74112、74158",
+        flavor: "百香果、土鳳梨、芒果乾、杏桃、木槿花、可可碎、波特酒香",
+      },
+      {
+        name: "哥倫比亞-翡翠莊園",
+        price: "150$",
+        roast: "焙度:Medium",
+        processing: "處理法:Anaerobic Washed",
+        flavor: "鮮甜橙子、馬鞭草、紅糖、薄荷",
+      },
+    ],
+  },
+];
+
+const MenuList = ({ items }) => {
   return (
     <div className="menu bg-white px-10">
       <Image
@@ -66,7 +140,7 @@ const Menu = () => {
         alt="Logo"
         className="w-[100px] sm:w-[200px] sm:scale-100 mx-auto mr-0 py-5 -skew-y-12"
       />
-      {menuItems.map((category, index) => (
+      {items.map((category, index) => (
         <div key={index}>
           <h2 className="text-1xl font-semibold flex items-center justify-center underline font-cursive">
             {category.category}
@@ -75,22 +149,40 @@ const Menu = () => {
             {category.items.map((item, itemIndex) => (
               <li
                 key={itemIndex}
-                className="flex justify-between py-1 text-blue-700 font-cursive font-bold text-2xl"
+                className="flex flex-col py-1 text-blue-700 font-cursive font-bold text-xl"
               >
-                <span>{item.name}</span>
-                <span>{item.price}</span>
+                <div className="flex justify-between">
+                  <span>{item.name}</span>
+                  <span>{item.price}</span>
+                </div>
                 {item.note && (
                   <span className="text-sm text-gray-500 block mt-1">
                     {item.note}
                   </span>
                 )}
+                <div className="flex text-black text-sm font-cursive ">
+                  {item.roast && <span className="mr-10">{item.roast}</span>}
+
+                  {item.processing && (
+                    <span className="mr-10">{item.processing}</span>
+                  )}
+                  {item.production && (
+                    <span className="mr-10">{item.production}</span>
+                  )}
+                  {item.varieties && (
+                    <span className="mr-10">{item.varieties}</span>
+                  )}
+                </div>
+                <div className="flex text-black text-sm font-cursive ">
+                  {item.flavor && <span className="mr-10">{item.flavor}</span>}
+                </div>
               </li>
             ))}
           </ul>
         </div>
       ))}
       <div className="mt-10 text-center">
-        {menuItems.map(
+        {items.map(
           (category, index) =>
             category.note && (
               <div key={index} className="text-sm text-gray-500 my-2">
@@ -99,6 +191,15 @@ const Menu = () => {
             )
         )}
       </div>
+    </div>
+  );
+};
+
+const Menu = () => {
+  return (
+    <div>
+      <MenuList items={menuItems} />
+      <MenuList items={coffeemens} />
     </div>
   );
 };
