@@ -161,20 +161,20 @@ const MenuList = ({ items }) => {
                   </span>
                 )}
                 <div className="flex text-black text-sm font-cursive text-nowrap ">
-                  {item.roast && <span className="mr-10">{item.roast}</span>}
+                  {item.roast && <span className="mr-5">{item.roast}</span>}
 
                   {item.processing && (
-                    <span className="mr-10">{item.processing}</span>
+                    <span className="mr-5">{item.processing}</span>
                   )}
                   {item.production && (
-                    <span className="mr-10">{item.production}</span>
+                    <span className="mr-5">{item.production}</span>
                   )}
                   {item.varieties && (
-                    <span className="mr-10">{item.varieties}</span>
+                    <span className="mr-5">{item.varieties}</span>
                   )}
                 </div>
                 <div className="flex text-black text-sm font-cursive ">
-                  {item.flavor && <span className="mr-10">{item.flavor}</span>}
+                  {item.flavor && <span className="mr-5">{item.flavor}</span>}
                 </div>
               </li>
             ))}
