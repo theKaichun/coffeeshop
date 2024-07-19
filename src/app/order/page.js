@@ -176,15 +176,20 @@ const MenuPage = () => {
 
       {/* Shopping Cart Icon */}
       <div
-        className="fixed top-4 right-4 text-xl cursor-pointer"
+        className="fixed top-4 right-4 text-xl cursor-pointer z-20"
         onClick={toggleCartVisibility}
       >
         <FaShoppingCart />
       </div>
 
+      {/* Background overlay */}
+      {isCartVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" />
+      )}
+
       {/* Shopping Cart Modal */}
       {isCartVisible && (
-        <div className="fixed top-16 right-4 bg-primary p-4 rounded shadow-lg w-64">
+        <div className="fixed top-16 right-4 bg-primary p-4 rounded shadow-lg w-64 z-30">
           <h2 className="text-lg font-bold mb-2">購物車</h2>
           {menus[0].items.map((item, index) => {
             const quantity = quantities[index] || 0;
