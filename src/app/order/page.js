@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 const menus = [
   {
@@ -78,6 +79,7 @@ const menus = [
 const MenuPage = () => {
   const [expandedIndexes, setExpandedIndexes] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
   const handleClick = (index) => {
     setExpandedIndexes((prev) =>
@@ -86,12 +88,11 @@ const MenuPage = () => {
   };
 
   const handleQuantityChange = (index, change, event) => {
-    event.stopPropagation(); // 阻止事件冒泡
+    event.stopPropagation();
 
     setQuantities((prevQuantities) => {
       const newQuantity = Math.max((prevQuantities[index] || 0) + change, 0);
 
-      // 如果数量为0，则自动关闭该项
       const newExpandedIndexes =
         newQuantity === 0
           ? expandedIndexes.filter((i) => i !== index)
@@ -99,22 +100,29 @@ const MenuPage = () => {
           ? expandedIndexes
           : [...expandedIndexes, index];
 
+      setExpandedIndexes(newExpandedIndexes);
+
       return {
         ...prevQuantities,
         [index]: newQuantity,
       };
     });
+  };
 
-    // 在数量更新后调整展开状态
-    setExpandedIndexes((prev) =>
-      prev.includes(index) || (prevQuantities[index] || 0) + change > 0
-        ? prev
-        : prev.filter((i) => i !== index)
-    );
+  const toggleCartVisibility = () => {
+    setIsCartVisible((prev) => !prev);
+  };
+
+  const getTotalPrice = () => {
+    return menus[0].items.reduce((total, item, index) => {
+      const quantity = quantities[index] || 0;
+      const price = parseInt(item.price.replace("$", ""));
+      return total + quantity * price;
+    }, 0);
   };
 
   return (
-    <div className="bg-primary flex justify-center items-center min-h-screen">
+    <div className="bg-primary flex justify-center items-center min-h-screen relative">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 p-5">
         {menus[0].items.map((item, index) => (
           <div
@@ -165,6 +173,40 @@ const MenuPage = () => {
           </div>
         ))}
       </div>
+
+      {/* Shopping Cart Icon */}
+      <div
+        className="fixed top-4 right-4 text-xl cursor-pointer"
+        onClick={toggleCartVisibility}
+      >
+        <FaShoppingCart />
+      </div>
+
+      {/* Shopping Cart Modal */}
+      {isCartVisible && (
+        <div className="fixed top-16 right-4 bg-white p-4 rounded shadow-lg w-64">
+          <h2 className="text-lg font-bold mb-2">購物車</h2>
+          {menus[0].items.map((item, index) => {
+            const quantity = quantities[index] || 0;
+            if (quantity > 0) {
+              return (
+                <div key={index} className="mb-2">
+                  <p className="text-gray-700">
+                    {item.name} x {quantity}
+                  </p>
+                  <p className="text-gray-700">
+                    ${parseInt(item.price.replace("$", "")) * quantity}
+                  </p>
+                </div>
+              );
+            }
+            return null;
+          })}
+          <div className="border-t mt-2 pt-2">
+            <p className="text-gray-700 font-bold">總價: ${getTotalPrice()}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
