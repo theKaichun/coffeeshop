@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 const menus = [
   {
@@ -74,30 +76,95 @@ const menus = [
 ];
 
 const MenuPage = () => {
+  const [expandedIndexes, setExpandedIndexes] = useState([]);
+  const [quantities, setQuantities] = useState({});
+
+  const handleClick = (index) => {
+    setExpandedIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
+  const handleQuantityChange = (index, change, event) => {
+    event.stopPropagation(); // 阻止事件冒泡
+
+    setQuantities((prevQuantities) => {
+      const newQuantity = Math.max((prevQuantities[index] || 0) + change, 0);
+
+      // 如果数量为0，则自动关闭该项
+      const newExpandedIndexes =
+        newQuantity === 0
+          ? expandedIndexes.filter((i) => i !== index)
+          : expandedIndexes.includes(index)
+          ? expandedIndexes
+          : [...expandedIndexes, index];
+
+      return {
+        ...prevQuantities,
+        [index]: newQuantity,
+      };
+    });
+
+    // 在数量更新后调整展开状态
+    setExpandedIndexes((prev) =>
+      prev.includes(index) || (prevQuantities[index] || 0) + change > 0
+        ? prev
+        : prev.filter((i) => i !== index)
+    );
+  };
+
   return (
-    <div className="bg-primary grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 p-5">
-      {menus[0].items.map((item, index) => (
-        <div
-          key={index}
-          className="bg-white p-5 rounded-full shadow-lg text-center border border-gray-200 flex flex-col justify-between h-80"
-        >
-          <h2 className="text-blue-500 text-lg font-bold mb-2">{item.name}</h2>
-          <div className="flex-grow">
-            <p className="text-gray-700 mb-1">{item.price}</p>
-            <p className="text-gray-700 mb-1">{item.roast}</p>
-            {item.processing && (
-              <p className="text-gray-700 mb-1">{item.processing}</p>
+    <div className="bg-primary flex justify-center items-center min-h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 p-5">
+        {menus[0].items.map((item, index) => (
+          <div
+            key={index}
+            className={`bg-secondary p-5 rounded-lg shadow-lg text-center border border-gray-200 hover:scale-105 duration-200 ${
+              expandedIndexes.includes(index) ? "h-auto" : "h-24 cursor-pointer"
+            }`}
+            onClick={() => handleClick(index)}
+          >
+            <h2 className="text-blue-500 text-lg font-bold mb-2 hover:scale-105 duration-200">
+              {item.name}
+            </h2>
+            {expandedIndexes.includes(index) && (
+              <div>
+                <p className="text-gray-700 mb-1">{item.price}</p>
+                <p className="text-gray-700 mb-1">{item.roast}</p>
+                {item.processing && (
+                  <p className="text-gray-700 mb-1">{item.processing}</p>
+                )}
+                {item.production && (
+                  <p className="text-gray-700 mb-1">{item.production}</p>
+                )}
+                {item.varieties && (
+                  <p className="text-gray-700 mb-1">{item.varieties}</p>
+                )}
+                <p className="text-gray-700 mb-2">{item.flavor}</p>
+
+                <div className="flex items-center justify-center space-x-2">
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                    onClick={(event) => handleQuantityChange(index, -1, event)}
+                    disabled={(quantities[index] || 0) <= 0}
+                  >
+                    -
+                  </button>
+                  <span className="text-gray-700">
+                    {quantities[index] || 0}
+                  </span>
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded"
+                    onClick={(event) => handleQuantityChange(index, 1, event)}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
             )}
-            {item.production && (
-              <p className="text-gray-700 mb-1">{item.production}</p>
-            )}
-            {item.varieties && (
-              <p className="text-gray-700 mb-1">{item.varieties}</p>
-            )}
-            <p className="text-gray-700">{item.flavor}</p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
