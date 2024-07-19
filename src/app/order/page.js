@@ -184,7 +184,7 @@ const MenuPage = () => {
 
       {/* Shopping Cart Modal */}
       {isCartVisible && (
-        <div className="fixed top-16 right-4 bg-white p-4 rounded shadow-lg w-64">
+        <div className="fixed top-16 right-4 bg-primary p-4 rounded shadow-lg w-64">
           <h2 className="text-lg font-bold mb-2">購物車</h2>
           {menus[0].items.map((item, index) => {
             const quantity = quantities[index] || 0;
