@@ -137,14 +137,6 @@ const OptionsModal = ({ item, options, onClose, onAddToCart }) => {
     onClose();
   };
 
-  const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const handleDecrement = () => {
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-  };
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg p-6 max-w-md w-full">
@@ -173,21 +165,17 @@ const OptionsModal = ({ item, options, onClose, onAddToCart }) => {
         )}
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">數量</h3>
-          <div className="flex items-center">
-            <button
-              className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-              onClick={handleDecrement}
-            >
-              -
-            </button>
-            <span className="mx-2">{quantity}</span>
-            <button
-              className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-              onClick={handleIncrement}
-            >
-              +
-            </button>
-          </div>
+          <select
+            className="border rounded px-3 py-1 w-full"
+            value={quantity}
+            onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+          >
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="flex justify-end mt-6">
           <button
