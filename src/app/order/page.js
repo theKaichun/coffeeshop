@@ -221,6 +221,12 @@ const Order = () => {
       .toFixed(2);
   };
 
+  const handleSubmit = () => {
+    alert("訂單已送出！");
+    // You can add more logic here, such as sending the order to a server
+    setCart([]);
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-4xl font-bold mb-8">訂購單</h1>
@@ -266,6 +272,14 @@ const Order = () => {
         ))}
         <div className="mt-4 text-right">
           <span className="text-xl font-bold">總金額: {calculateTotal()}$</span>
+        </div>
+        <div className="text-right mt-4">
+          <button
+            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            onClick={handleSubmit}
+          >
+            送出訂單
+          </button>
         </div>
       </div>
     </div>
