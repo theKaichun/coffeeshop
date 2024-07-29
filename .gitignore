@@ -31,6 +31,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+LINE_PAY_CHANNELID=2005920701
+LINE_PAY_SECRET=45d7697220634f1be78b2e09800e1cb8

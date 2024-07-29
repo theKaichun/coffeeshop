@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import axios from "axios";
 const menuItems = [
   {
     items: [
@@ -139,7 +139,7 @@ const OptionsModal = ({ item, options, onClose, onAddToCart }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full animate-fadeIn">
         <h2 className="text-2xl font-bold mb-4">{item.name}</h2>
         {Object.entries(options).map(([category, values]) =>
           category === "溫度" && selectedOptions.容量 === "咖啡豆" ? null : (
@@ -196,6 +196,27 @@ const OptionsModal = ({ item, options, onClose, onAddToCart }) => {
   );
 };
 
+const CartItem = ({ item, index, onRemove }) => (
+  <div className="flex justify-between items-center mb-2 p-2 border rounded">
+    <div>
+      <span className="font-semibold">{item.name}</span>{" "}
+      <span className="text-sm">
+        ({item.容量}, {item.溫度})
+      </span>
+      <span className="ml-2">{item.displaySize}</span>
+      <span className="ml-2">
+        {item.quantity} x {item.price}$
+      </span>
+    </div>
+    <button
+      className="ml-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+      onClick={() => onRemove(index)}
+    >
+      刪除
+    </button>
+  </div>
+);
+
 const Order = () => {
   const [cart, setCart] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -221,10 +242,27 @@ const Order = () => {
       .toFixed(2);
   };
 
-  const handleSubmit = () => {
-    alert("訂單已送出！");
-    // You can add more logic here, such as sending the order to a server
-    setCart([]);
+  const handleSubmit = async () => {
+    const orderId = `ORDER_${Date.now()}`;
+    const orders = {
+      cart: cart.map((item) => ({
+        name: item.name,
+        quantity: item.quantity,
+        price: parseFloat(item.price),
+      })),
+    };
+
+    try {
+      const response = await axios.post("/api/linePay/createOrder", orders);
+      if (response.data.paymentUrl) {
+        window.location.href = response.data.paymentUrl;
+      } else {
+        throw new Error("無效的支付 URL");
+      }
+    } catch (error) {
+      console.error("Failed to create LINE Pay order", error);
+      alert("訂單創建失敗，請稍後再試。");
+    }
   };
 
   return (
@@ -248,37 +286,20 @@ const Order = () => {
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-4">購物車</h2>
         {cart.map((item, index) => (
-          <div
+          <CartItem
             key={index}
-            className="flex justify-between items-center mb-2 p-2 border rounded"
-          >
-            <div>
-              <span className="font-semibold">{item.name}</span>{" "}
-              <span className="text-sm">
-                ({item.容量}, {item.溫度})
-              </span>
-              <span className="ml-2">{item.displaySize}</span>
-              <span className="ml-2">
-                {item.quantity} x {item.price}$
-              </span>
-            </div>
-            <button
-              className="ml-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-              onClick={() => handleRemoveFromCart(index)}
-            >
-              刪除
-            </button>
-          </div>
+            item={item}
+            index={index}
+            onRemove={handleRemoveFromCart}
+          />
         ))}
-        <div className="mt-4 text-right">
-          <span className="text-xl font-bold">總金額: {calculateTotal()}$</span>
-        </div>
-        <div className="text-right mt-4">
+        <div className="mt-4">
+          <p className="text-xl font-bold">總計: NT$ {calculateTotal()}</p>
           <button
-            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
             onClick={handleSubmit}
           >
-            送出訂單
+            前往付款
           </button>
         </div>
       </div>
