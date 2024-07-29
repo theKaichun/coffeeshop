@@ -21,15 +21,14 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const { cart } = req.body;
 
-    const calculateTotalAmount = (cart) => {
-      return cart.reduce((total, item) => {
-        return total + item.price * item.quantity;
-      }, 0);
+    const calculateTotalAmount = (order) => {
+      return order.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
     };
 
-    const generateOrderId = () => {
-      return "order-" + new Date().getTime();
-    };
+    const generateOrderId = () => "order-" + new Date().getTime();
 
     const orderObj = {
       amount: calculateTotalAmount(cart),
@@ -54,16 +53,17 @@ export default async function handler(req, res) {
     };
 
     const url = `${process.env.LINE_PAY_SITE}/${process.env.LINE_PAY_VERSION}/payments/request`;
-    const headers = createSignature(url, orderObj, process.env.LINE_PAY_SECRET);
-
-    console.log({ headers, orderObj });
+    const headers = createSignature(
+      "/payments/request",
+      orderObj,
+      process.env.LINE_PAY_SECRET
+    );
 
     try {
       const linePayRes = await axios.post(url, orderObj, { headers });
       if (linePayRes?.data?.returnCode === "0000") {
         return res.json({ paymentUrl: linePayRes.data.info.paymentUrl.web });
       } else {
-        console.log(linePayRes.data);
         return res.status(400).json({
           message: "Failed to create LINE Pay order",
           detail: linePayRes.data,

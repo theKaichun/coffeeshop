@@ -243,7 +243,6 @@ const Order = () => {
   };
 
   const handleSubmit = async () => {
-    const orderId = `ORDER_${Date.now()}`;
     const orders = {
       cart: cart.map((item) => ({
         name: item.name,
@@ -264,7 +263,6 @@ const Order = () => {
       alert("訂單創建失敗，請稍後再試。");
     }
   };
-
   return (
     <div className="p-6">
       <h1 className="text-4xl font-bold mb-8">訂購單</h1>
