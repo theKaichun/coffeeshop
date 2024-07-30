@@ -47,8 +47,8 @@ export default async function handler(req, res) {
         },
       ],
       redirectUrls: {
-        confirmUrl: "http://localhost:3000/order/linePay/confirm",
-        cancelUrl: "http://localhost:3000/order/linePay/cancel",
+        confirmUrl: "https://coffeeshop-silk.vercel.app/order/linePay/confirm",
+        cancelUrl: "https://coffeeshop-silk.vercel.app/order/linePay/cancel",
       },
     };
 
