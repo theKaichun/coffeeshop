@@ -1,4 +1,3 @@
-"use server";
 import axios from "axios";
 import hmacSHA256 from "crypto-js/hmac-sha256";
 import Base64 from "crypto-js/enc-base64";
@@ -41,7 +40,7 @@ export default async function handler(req, res) {
       const linePayRes = await axios.post(url, linePayBody, { headers });
 
       if (linePayRes?.data?.returnCode === "0000") {
-        res.redirect(`/checkOrder?id=${orderId}`);
+        res.redirect("https://coffeeshop-silk.vercel.app/");
       } else {
         res.status(400).json({
           message: "Failed to confirm LINE Pay order",

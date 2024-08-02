@@ -47,7 +47,7 @@ export default async function handler(req, res) {
         },
       ],
       redirectUrls: {
-        confirmUrl: "https://coffeeshop-silk.vercel.app/order/linePay/confirm",
+        confirmUrl: "https://coffeeshop-silk.vercel.app/",
         cancelUrl: "https://coffeeshop-silk.vercel.app/order/linePay/cancel",
       },
     };
@@ -77,6 +77,6 @@ export default async function handler(req, res) {
       });
     }
   } else {
-    return res.status(405).end(); // Method Not Allowed
+    return res.status(405).end();
   }
 }
